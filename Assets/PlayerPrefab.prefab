@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2839420599
+  GlobalObjectIdHash: 1080604353
   InScenePlacedSourceGlobalObjectIdHash: 0
   m_InScenePlacedDisabledByDefault: 0
   DeferredDespawnTick: 0
@@ -300,6 +300,7 @@ MonoBehaviour:
   cameraContainer: {fileID: 4183980997807423682}
   audioListener: {fileID: 6102366338712770875}
   movementScript: {fileID: 3012576960727818598}
+  characterModel: {fileID: 1259132026603162212}
 --- !u!1 &4183980997807423682
 GameObject:
   m_ObjectHideFlags: 0
@@ -484,7 +485,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2982132756549187862, guid: 418549c423a213342987713be721f449, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.7586006
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2982132756549187862, guid: 418549c423a213342987713be721f449, type: 3}
       propertyPath: m_LocalPosition.y
@@ -492,7 +493,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2982132756549187862, guid: 418549c423a213342987713be721f449, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.75537
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2982132756549187862, guid: 418549c423a213342987713be721f449, type: 3}
       propertyPath: m_LocalRotation.w
@@ -527,6 +528,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 418549c423a213342987713be721f449, type: 3}
+--- !u!1 &1259132026603162212 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2461632114653389740, guid: 418549c423a213342987713be721f449, type: 3}
+  m_PrefabInstance: {fileID: 3697504452176259528}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1887717723749716190 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2982132756549187862, guid: 418549c423a213342987713be721f449, type: 3}
