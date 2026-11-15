@@ -14,10 +14,15 @@ public class NetworkPlayerSetup : NetworkBehaviour
     [SerializeField] private GameObject characterModel;
 
     private CharacterController characterController;
+    private Camera playerCamera;
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
+        if (cameraContainer != null)
+        {
+            playerCamera = cameraContainer.GetComponentInChildren<Camera>(true);
+        }
     }
 
     public override void OnNetworkSpawn()
@@ -25,6 +30,7 @@ public class NetworkPlayerSetup : NetworkBehaviour
         if (IsOwner)
         {
             if (cameraContainer != null) cameraContainer.SetActive(true);
+            if (playerCamera != null) playerCamera.enabled = true;
             if (audioListener != null) audioListener.enabled = true;
             if (movementScript != null) movementScript.enabled = true;
 
@@ -43,8 +49,10 @@ public class NetworkPlayerSetup : NetworkBehaviour
         }
         else
         {
-            // Remote player: disable local camera, audio, movement, and client-side controller
-            if (cameraContainer != null) cameraContainer.SetActive(false);
+            // Remote player: keep cameraContainer active so the weapon mesh stays visible,
+            // but disable the Camera component, AudioListener, movement, and CharacterController
+            if (cameraContainer != null) cameraContainer.SetActive(true);
+            if (playerCamera != null) playerCamera.enabled = false;
             if (audioListener != null) audioListener.enabled = false;
             if (movementScript != null) movementScript.enabled = false;
             if (characterController != null) characterController.enabled = false;

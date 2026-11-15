@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace GameDevTraum
 {
     [RequireComponent(typeof(CharacterController))]
     public class FirstPersonController : MonoBehaviour
     {
-
         [Header("Movement")]
         public bool canMove = true;
-        [Range(0f,10f)]
+        [Range(0f, 10f)]
         public float walkingSpeed = 7.5f;
         [Range(0f, 10f)]
         public float runningSpeed = 11.5f;
@@ -45,12 +45,18 @@ namespace GameDevTraum
             cameraContainer = transform.GetChild(0);
             characterController = GetComponent<CharacterController>();
 
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            if (SceneManager.GetActiveScene().name == "Arena")
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
         }
 
         void Update()
         {
+            if (characterController == null || !characterController.enabled || !characterController.gameObject.activeInHierarchy)
+                return;
+
             ReadInput();
 
             if (canMove)
@@ -111,9 +117,11 @@ namespace GameDevTraum
                 moveDirection.y += gravityMultiplier * Physics.gravity.y * Time.deltaTime;
             }
 
-            characterController.Move(moveDirection * Time.deltaTime);
+            if (characterController.enabled && characterController.gameObject.activeInHierarchy)
+            {
+                characterController.Move(moveDirection * Time.deltaTime);
+            }
         }
-
 
         void CameraRotation()
         {
@@ -132,10 +140,5 @@ namespace GameDevTraum
         {
             canMove = false;
         }
-
-
-
-
     }
 }
-
